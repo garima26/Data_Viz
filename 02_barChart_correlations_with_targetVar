@@ -1,0 +1,19 @@
+import matplotlib.pyplot as plt
+import numpy as np
+# Now let us look at the correlation coefficient of each of these variables #
+x_cols = [col for col in data.columns if col not in ['mcd_global_lcat_id_nu','yoy_sales_chg','MISCELLANEOS_iTEMS','SPECIAL','SERVICES','PROMOTIONAL','HM_SIDE_ITEMS','BEVERAGE_MLTIPLES','mid_tier','core_price_tier']]
+
+labels = []
+values = []
+for col in x_cols:
+    labels.append(col)
+    values.append(np.corrcoef(data[col].values, data.yoy_sales_chg.values)[0,1])
+    
+ind = np.arange(len(labels))
+width = 0.2
+fig, ax = plt.subplots(figsize=(6,12))
+rects = ax.barh(ind, np.array(values), color='y')
+ax.set_yticks(ind+((width)/2.))
+ax.set_yticklabels(labels, rotation='horizontal')
+ax.set_xlabel("Correlation coefficient")
+ax.set_title("Correlation coefficient")
