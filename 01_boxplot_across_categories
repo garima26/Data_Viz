@@ -1,0 +1,12 @@
+import matplotlib.pyplot as plt
+%matplotlib inline
+import seaborn as sb
+
+from matplotlib.ticker import MultipleLocator
+
+plt.figure(figsize=(12,12)) 
+ax = plt.gca()
+sb.boxplot(x="mission", y="item_type_per_bask", data=avg_item1)
+
+majorLocator = MultipleLocator(1)
+ax.yaxis.set_major_locator(majorLocator)
