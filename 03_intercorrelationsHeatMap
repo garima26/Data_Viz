@@ -1,0 +1,9 @@
+#Intercorrelations
+cols_to_use = x_cols
+
+temp_df = data[cols_to_use]
+corrmat = temp_df.corr(method='pearson')
+f, ax = plt.subplots(figsize=(8, 8))
+
+# Draw the heatmap using seaborn
+sb.heatmap(corrmat, vmax=.8, square=True)
