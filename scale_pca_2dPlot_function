@@ -1,0 +1,21 @@
+from sklearn.decomposition import PCA
+
+from sklearn.preprocessing import StandardScaler
+    
+def plot_this(X_rs,y_rs,method):
+  
+  sca=StandardScaler(copy=True, with_mean=True, with_std=True)
+  X_rs=sca.fit_transform(X_rs)
+  pca = PCA(n_components=2).fit(X_rs)
+  pca_2d = pca.transform(X_rs)
+  # Assign colors
+  for i in range(0, pca_2d.shape[0]):
+    if y_rs[i] == 1:
+      c1 = plt.scatter(pca_2d[i,0],pca_2d[i,1],c='r', marker='o')
+    elif y_rs[i] == 0:
+      c2 = plt.scatter(pca_2d[i,0],pca_2d[i,1],c='g', marker='*')  
+  plt.legend([c1, c2], ['Fraud', 'Good'],loc='upper right')
+  plt.title(method)
+  plt.axis([-4, 5, -4, 4])  # x axis (-4,5), y axis (-4,4)
+  plt.tight_layout()
+  plt.show()   
