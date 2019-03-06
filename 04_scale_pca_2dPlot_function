@@ -1,5 +1,5 @@
+import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
-
 from sklearn.preprocessing import StandardScaler
     
 def plot_this(X_rs,y_rs,method):
@@ -19,3 +19,13 @@ def plot_this(X_rs,y_rs,method):
   plt.axis([-4, 5, -4, 4])  # x axis (-4,5), y axis (-4,4)
   plt.tight_layout()
   plt.show()   
+  
+  
+  # Plot style #2
+import seaborn as sns
+
+colors = ['#ef8a62' if v == 0 else '#f7f7f7' if v == 1 else '#67a9cf' for v in y]
+kwarg_params = {'linewidth': 1, 'edgecolor': 'black'}
+fig = plt.Figure(figsize=(12,6))
+plt.scatter(X[:, 0], X[:, 1], c=colors, **kwarg_params)
+sns.despine()
